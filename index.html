@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #nav {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 60px;
+        width: 70%;
+        margin: auto;
+        border: 1px solid black;
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFLHNm9_5VICZ8aSaCYVTh1FU2i4ar257oIg&usqp=CAU");
+      }
+      #nav>#food{
+        width:500px;
+        height:30px;
+        border-radius: 15px;
+        margin-top: 16px;
+        margin-left: 120px;
+       
+      }
+      button{
+        padding:8px 20px 8px 20px;
+        margin-left: 20px;
+        background-color: black;
+        color:white;
+      }
+
+      #foodready {
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        color:black;
+        border-radius: 10px;
+        width: 400px;
+        margin: auto;
+        text-align: center;
+        margin-top: -40px;
+        font-size: 20px;
+        padding-bottom: 20px;
+      }
+      #orderId {
+        display: flex;
+        justify-content: flex-end;
+         margin-left: 100px;
+      }
+      img {
+        width: 100%;
+        border-radius: 10px;
+      }
+      p {
+        font-size: 30px;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div id="nav">
+        <select id="food">
+          <option value="Burger">Burger</option>
+          <option value="Pizza">Pizza</option>
+          <option value="Lollipop">Lollipop</option>
+          <option value="Chicken Wings">Chicken Wings</option>
+          <option value="Fries">Fries</option>
+          <option value="Combo Offer">Combo Offer</option>
+        </select>
+        <button onclick="orderFood()">Order Food</button>
+      </div>
+      <div id="orderId"></div>
+      <div id="foodready"></div>
+    </div>
+  </body>
+</html>
+<script>
+  let counter = 0;
+  function orderFood() {
+    let display = document.getElementById("foodready");
+    display.innerHTML = null;
+    let orderId = document.getElementById("orderId");
+    orderId.innerHTML = null;
+
+    let food = document.getElementById("food").value;
+    let store = "open";
+    let time = Math.random() * 1000;
+
+    if (counter >= 10) {
+      store = "close";
+    }
+
+    let foodProm = new Promise(function (resolve, reject) {
+      if (store == "close") {
+        reject("Sorry!!!McDonald is Closed");
+      } else {
+        setTimeout(function () {
+          resolve(food);
+        }, time);
+      }
+    });
+
+    let img = document.createElement("img");
+    let desc = document.createElement("h2");
+    let orderid = document.createElement("p");
+    let id = Math.floor(Math.random() * 20 + 1);
+    foodProm.then(function (res) {
+      switch (res) {
+        case "Burger":
+          img.src =
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx55WfEUkziL-evo_OIb-otasGXGnWRuS-PQ&usqp=CAU";
+          desc.innerText = `Your ${food} is ready!`;
+          orderid.innerText = `Order id is #${id}`;
+          display.append(img, desc);
+          orderId.append(orderid);
+          break;
+
+        case "Pizza":
+          img.src =
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvdAaFieARJBSTyBdcg4jH_tCXE2xbYjxNNg&usqp=CAU";
+          desc.innerText = `Your ${food} is ready!`;
+          orderid.innerText = `Order id is #${id}`;
+          display.append(img, desc);
+          orderId.append(orderid);
+          break;
+
+        case "Chicken Wings":
+          img.src =
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJXCMoeixIZgBWrn4cVfzIAv2Rj2TnHEQ4w&usqp=CAU";
+          desc.innerText = `Your ${food} is ready!`;
+          orderid.innerText = `Order id is #${id}`;
+          display.append(img, desc);
+          orderId.append(orderid);
+          break;
+
+        case "Fries":
+          img.src =
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE_5RQu-9jcQS-Wt0WyK3Mla7QFVzl8O3VZA&usqp=CAU";
+          desc.innerText = `Your ${food} is ready!`;
+          orderid.innerText = `Order id is #${id}`;
+          display.append(img, desc);
+          orderId.append(orderid);
+          break;
+        case "Lollipop":
+          img.src =
+            "https://ml5jqffo9xcx.i.optimole.com/ua3WCVA-bdbT6JHz/w:1920/h:1080/q:55/https://allchickenrecipe.com/wp-content/uploads/2020/05/Chicken-Lollipop.jpg";
+          desc.innerText = `Your ${food} is ready!`;
+          orderid.innerText = `Order id is #${id}`;
+          display.append(img, desc);
+          orderId.append(orderid);
+          break;
+        case "Combo Offer":
+          img.src =
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI1biL_GiSMy_YlEM31gMuhjZGQLQocu38wQ&usqp=CAU";
+          desc.innerText = `Your ${food} is ready!`;
+          orderid.innerText = `Order id is #${id}`;
+          display.append(img, desc);
+          orderId.append(orderid);
+          break;
+      }
+    });
+
+    foodProm.catch(function (error) {
+      img.src =
+        "https://th.bing.com/th/id/OIP.8rbNrekVky9iCPAD3HIk3wHaEK?w=321&h=181&c=7&r=0&o=5&dpr=1.5&pid=1.7";
+      desc.innerText = error;
+      display.append(img, desc);
+    });
+    counter++;
+  }
+</script>
